@@ -7,8 +7,8 @@
 :root {
     font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
     line-height: 1.5;
-    color: #222;
-    background: #f5f7fb;
+    color: #e2e8f0;
+    background: #0b1120;
 }
 
 body {
@@ -18,20 +18,21 @@ body {
 h1 {
     margin: 0 0 4px;
     font-size: 24px;
+    color: #f1f5f9;
 }
 
 .container {
     max-width: 400px;
     margin: 64px auto;
     padding: 28px;
-    background: white;
+    background: #1e293b;
     border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
 
 .subtitle {
     margin: 0;
-    color: #555;
+    color: #94a3b8;
     font-size: 14px;
 }
 
@@ -59,7 +60,7 @@ h1 {
 .display {
     padding: 16px 20px;
     border-radius: 14px;
-    background: #1e293b;
+    background: #0b1120;
     color: white;
     text-align: right;
 }
@@ -86,18 +87,18 @@ h1 {
 }
 
 .display input::placeholder {
-    color: #475569;
+    color: #334155;
 }
 
 .display-operator {
     min-width: 1ch;
-    color: #fca5a5;
+    color: #fbbf24;
     font-size: 26px;
     font-weight: 700;
 }
 
 .calculator.is-enhanced .display input {
-    color: #94a3b8;
+    color: #64748b;
 }
 
 .calculator.is-enhanced .display input.is-active {
@@ -106,7 +107,7 @@ h1 {
 
 .display input:focus-visible {
     text-decoration: underline;
-    text-decoration-color: #94a3b8;
+    text-decoration-color: #64748b;
     text-underline-offset: 6px;
 }
 
@@ -114,7 +115,7 @@ h1 {
 .error {
     margin: 10px 0 0;
     padding-top: 10px;
-    border-top: 1px solid #334155;
+    border-top: 1px solid #1e293b;
     font-size: 14px;
 }
 
@@ -148,8 +149,8 @@ h1 {
     padding: 0;
     border: 0;
     border-radius: 14px;
-    background: #f1f5f9;
-    color: #1e293b;
+    background: #334155;
+    color: #f1f5f9;
     font: inherit;
     font-size: 24px;
     font-weight: 600;
@@ -160,7 +161,7 @@ h1 {
 }
 
 .key:hover {
-    background: #e2e8f0;
+    background: #475569;
 }
 
 .key:active {
@@ -169,7 +170,7 @@ h1 {
 
 .key:focus-visible,
 .key-operator input:focus-visible + span {
-    outline: 2px solid #64748b;
+    outline: 2px solid #38bdf8;
     outline-offset: 2px;
 }
 
@@ -178,21 +179,21 @@ h1 {
 }
 
 .key-function {
-    background: #e2e8f0;
-    color: #475569;
+    background: #293548;
+    color: #94a3b8;
     font-size: 20px;
 }
 
 .key-function:hover {
-    background: #cbd5e1;
+    background: #334155;
 }
 
 .key-operator {
-    background: #cbd5e1;
+    background: #3f4f68;
 }
 
 .key-operator:hover {
-    background: #94a3b8;
+    background: #52667f;
 }
 
 .key-operator input {
@@ -212,8 +213,8 @@ h1 {
 }
 
 .key-operator input:checked + span {
-    background: #1e293b;
-    color: white;
+    background: #f59e0b;
+    color: #1e293b;
 }
 
 .calculate-button {
