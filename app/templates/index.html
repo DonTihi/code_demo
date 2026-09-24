@@ -18,15 +18,18 @@
                        value="{{ request.form.get('a', '') }}">
             </label>
 
-            <label>
-                Operator
+            <fieldset class="operator-group">
+                <legend>Operator</legend>
                 {% set selected_op = request.form.get('op', '+') %}
-                <select name="op">
-                    {% for symbol, label in operators.items() %}
-                        <option value="{{ symbol }}"{% if symbol == selected_op %} selected{% endif %}>{{ label }}</option>
+                <div class="operator-buttons">
+                    {% for symbol, (text, name) in operators.items() %}
+                        <label class="operator-button">
+                            <input type="radio" name="op" value="{{ symbol }}" aria-label="{{ name }}"{% if symbol == selected_op %} checked{% endif %}>
+                            <span aria-hidden="true">{{ text }}</span>
+                        </label>
                     {% endfor %}
-                </select>
-            </label>
+                </div>
+            </fieldset>
 
             <label>
                 Second number

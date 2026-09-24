@@ -46,8 +46,7 @@ h1 {
     font-weight: 600;
 }
 
-.calculator-form input,
-.calculator-form select {
+.calculator-form input[type="number"] {
     padding: 10px;
     border: 1px solid #cbd5e1;
     border-radius: 6px;
@@ -55,15 +54,70 @@ h1 {
     font-size: 16px;
 }
 
-.calculator-form select {
-    background: white;
-}
-
-.calculator-form input:focus-visible,
-.calculator-form select:focus-visible {
+.calculator-form input[type="number"]:focus-visible {
     outline: 2px solid #94a3b8;
     outline-offset: 1px;
     border-color: #94a3b8;
+}
+
+.operator-group {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.operator-group legend {
+    margin-bottom: 6px;
+    padding: 0;
+    font-weight: 600;
+}
+
+.operator-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.calculator-form .operator-button {
+    position: relative;
+    display: block;
+}
+
+.operator-button input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.operator-button span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 44px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: white;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.operator-button span:hover {
+    background: #f1f5f9;
+}
+
+.operator-button input:checked + span {
+    border-color: #1e293b;
+    background: #1e293b;
+    color: white;
+}
+
+.operator-button input:focus-visible + span {
+    outline: 2px solid #94a3b8;
+    outline-offset: 2px;
 }
 
 .calculate-button {

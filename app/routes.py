@@ -7,7 +7,13 @@ INVALID_OPERATOR_MESSAGE = "Please choose a valid operator."
 DIVISION_BY_ZERO_MESSAGE = "Cannot divide by zero."
 OVERFLOW_MESSAGE = "The result is too large."
 
-OPERATOR_LABELS = {"+": "+", "-": "−", "*": "×", "/": "÷"}
+# Operator symbol -> (button text, accessible name)
+OPERATOR_LABELS = {
+    "+": ("+", "Add"),
+    "-": ("−", "Subtract"),
+    "*": ("×", "Multiply"),
+    "/": ("÷", "Divide"),
+}
 
 bp = Blueprint("main", __name__)
 

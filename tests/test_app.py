@@ -48,11 +48,22 @@ def test_calculate_keeps_entered_values(client):
     assert b'value="3"' in response.data
 
 
-def test_home_page_offers_all_operators(client):
+@pytest.mark.parametrize(
+    ("symbol", "name"),
+    [("+", "Add"), ("-", "Subtract"), ("*", "Multiply"), ("/", "Divide")],
+)
+def test_home_page_offers_operator_buttons(client, symbol, name):
     response = client.get("/")
 
-    for symbol in ("+", "-", "*", "/"):
-        assert f'<option value="{symbol}"'.encode() in response.data
+    expected = f'<input type="radio" name="op" value="{symbol}" aria-label="{name}"'
+    assert expected.encode() in response.data
+
+
+def test_home_page_selects_addition_by_default(client):
+    response = client.get("/")
+
+    assert b'value="+" aria-label="Add" checked>' in response.data
+    assert response.data.count(b" checked>") == 1
 
 
 @pytest.mark.parametrize(
@@ -69,8 +80,8 @@ def test_calculate_endpoint_applies_operator(client, op, expected):
 def test_calculate_keeps_selected_operator(client):
     response = client.post("/calculate", data={"a": "6", "op": "*", "b": "2"})
 
-    assert b'<option value="*" selected>' in response.data
-    assert b'<option value="+" selected>' not in response.data
+    assert b'value="*" aria-label="Multiply" checked>' in response.data
+    assert response.data.count(b" checked>") == 1
 
 
 def test_calculate_rejects_unknown_operator(client):
