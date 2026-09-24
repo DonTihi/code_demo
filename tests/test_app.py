@@ -52,10 +52,10 @@ def test_calculate_keeps_entered_values(client):
     ("symbol", "name"),
     [("+", "Add"), ("-", "Subtract"), ("*", "Multiply"), ("/", "Divide")],
 )
-def test_home_page_offers_operator_buttons(client, symbol, name):
+def test_home_page_offers_operator_keys(client, symbol, name):
     response = client.get("/")
 
-    expected = f'<input type="radio" name="op" value="{symbol}" aria-label="{name}"'
+    expected = f'data-operator="{symbol}" aria-label="{name}"'
     assert expected.encode() in response.data
 
 
@@ -90,22 +90,36 @@ def test_home_page_has_no_result_yet(client):
     assert b"Result:" not in response.data
 
 
+def test_home_page_has_a_single_display_line(client):
+    response = client.get("/")
+
+    assert b'<div class="display-line" data-expression aria-hidden="true">0</div>' in response.data
+
+
+def test_home_page_exposes_operator_symbols_for_the_keypad_script(client):
+    response = client.get("/")
+
+    assert b"data-operator-symbols='{\"*\": \"\\u00d7\"" in response.data
+
+
 def test_calculate_exposes_result_to_keypad(client):
     response = client.post("/calculate", data={"a": "6", "op": "*", "b": "2"})
 
     assert b'data-result="12.0"' in response.data
 
 
-def test_display_shows_selected_operator(client):
+def test_calculate_exposes_posted_values_to_keypad(client):
     response = client.post("/calculate", data={"a": "6", "op": "/", "b": "2"})
 
-    assert b"data-operator-display>\xc3\xb7</span>" in response.data
+    assert b'data-a="6"' in response.data
+    assert b'data-op="/"' in response.data
+    assert b'data-b="2"' in response.data
 
 
-def test_display_shows_no_operator_when_it_is_invalid(client):
+def test_calculate_exposes_invalid_operator_to_keypad(client):
     response = client.post("/calculate", data={"a": "6", "op": "%", "b": "2"})
 
-    assert b"data-operator-display></span>" in response.data
+    assert b'data-op="%"' in response.data
     assert b" checked>" not in response.data
 
 

@@ -58,64 +58,108 @@ h1 {
 /* Display */
 
 .display {
-    padding: 16px 20px;
+    padding: 20px;
     border-radius: 14px;
     background: #0b1120;
     color: white;
+}
+
+.display-line {
+    overflow-x: auto;
+    white-space: nowrap;
     text-align: right;
+    font-size: 32px;
+    font-variant-numeric: tabular-nums;
+    scrollbar-width: none;
 }
 
-.display-row {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
+.display-line::-webkit-scrollbar {
+    display: none;
 }
 
-.display input {
-    flex: 1;
-    width: 100%;
-    min-width: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
+.display-line.is-error {
+    color: #fca5a5;
+    font-size: 18px;
+    white-space: normal;
+    text-align: left;
+}
+
+/* Shown only without JavaScript; hidden once the keypad takes over. */
+.legacy-controls {
+    display: grid;
+    gap: 16px;
+}
+
+.calculator.is-enhanced .legacy-controls {
+    display: none;
+}
+
+.legacy-controls label {
+    display: grid;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.legacy-controls input[type="text"] {
+    padding: 10px;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    background: #0b1120;
     color: inherit;
     font: inherit;
-    font-size: 30px;
-    font-variant-numeric: tabular-nums;
-    text-align: right;
-    outline: none;
+    font-size: 16px;
 }
 
-.display input::placeholder {
-    color: #334155;
+.legacy-operators {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
-.display-operator {
-    min-width: 1ch;
-    color: #fbbf24;
-    font-size: 26px;
+.legacy-operators legend {
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 0;
+    font-weight: 600;
+}
+
+.legacy-operators label {
+    display: block;
+}
+
+.legacy-operators input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.legacy-operators span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 40px;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    font-size: 20px;
     font-weight: 700;
+    cursor: pointer;
 }
 
-.calculator.is-enhanced .display input {
-    color: #64748b;
-}
-
-.calculator.is-enhanced .display input.is-active {
-    color: white;
-}
-
-.display input:focus-visible {
-    text-decoration: underline;
-    text-decoration-color: #64748b;
-    text-underline-offset: 6px;
+.legacy-operators input:checked + span {
+    background: #f59e0b;
+    color: #1e293b;
+    border-color: #f59e0b;
 }
 
 .result,
 .error {
     margin: 10px 0 0;
     padding-top: 10px;
-    border-top: 1px solid #1e293b;
+    border-top: 1px solid #334155;
     font-size: 14px;
 }
 
@@ -168,8 +212,7 @@ h1 {
     transform: scale(0.96);
 }
 
-.key:focus-visible,
-.key-operator input:focus-visible + span {
+.key:focus-visible {
     outline: 2px solid #38bdf8;
     outline-offset: 2px;
 }
@@ -190,31 +233,20 @@ h1 {
 
 .key-operator {
     background: #3f4f68;
+    font-size: 28px;
 }
 
 .key-operator:hover {
     background: #52667f;
 }
 
-.key-operator input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.key-operator span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    font-size: 28px;
-}
-
-.key-operator input:checked + span {
+.key-operator.is-pending {
     background: #f59e0b;
     color: #1e293b;
+}
+
+.key-operator.is-pending:hover {
+    background: #fbbf24;
 }
 
 .calculate-button {

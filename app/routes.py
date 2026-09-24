@@ -15,11 +15,21 @@ OPERATOR_LABELS = {
     "/": ("÷", "Divide"),
 }
 
+# Operator symbol -> button text, for the keypad's JavaScript.
+OPERATOR_SYMBOLS = {symbol: text for symbol, (text, _name) in OPERATOR_LABELS.items()}
+
 bp = Blueprint("main", __name__)
 
 
 def _render(status: int = 200, **context):
-    return render_template("index.html", operators=OPERATOR_LABELS, **context), status
+    return render_template(
+        "index.html",
+        operators=OPERATOR_LABELS,
+        operator_symbols=OPERATOR_SYMBOLS,
+        division_by_zero_message=DIVISION_BY_ZERO_MESSAGE,
+        overflow_message=OVERFLOW_MESSAGE,
+        **context,
+    ), status
 
 
 @bp.get("/")

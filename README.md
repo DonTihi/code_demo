@@ -4,7 +4,9 @@ A tiny Flask application designed for a live demonstration of agentic software d
 
 The calculator supports addition, subtraction, multiplication and division (`+`, `-`, `*`, `/`). It rejects invalid numbers and division by zero with a clear error message.
 
-It looks and works like a pocket calculator: a display, a 0–9 keypad, operator keys, `C`, `⌫`, `±` and a red `=` key. The physical keyboard works too (digits, `+ - * /`, `Enter`, `Backspace`, `Esc`).
+It looks and works like a pocket calculator: a single display line, a 0–9 keypad, operator keys, `C`, `⌫`, `±` and a red `=` key. The physical keyboard works too (digits, `+ - * /`, `Enter`, `Backspace`, `Esc`).
+
+Operators can be chained, just like on a real calculator: `6 + 2 + 3 =` computes left to right (`8`, then `11`) instead of requiring one operator per calculation. Only the final pending pair of numbers is sent to the server; earlier steps in the chain are computed in the browser so the running total can be shown as you type. **Without JavaScript**, a simpler fallback form (two number fields and an operator choice, one calculation at a time) is shown instead.
 
 ## What the demo shows
 
