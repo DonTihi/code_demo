@@ -7,8 +7,8 @@
 :root {
     font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
     line-height: 1.5;
-    color: #e2e8f0;
-    background: #0b1120;
+    color: #222;
+    background: #f5f7fb;
 }
 
 body {
@@ -18,21 +18,21 @@ body {
 h1 {
     margin: 0 0 4px;
     font-size: 24px;
-    color: #f1f5f9;
+    color: #1e293b;
 }
 
 .container {
     max-width: 400px;
     margin: 64px auto;
     padding: 28px;
-    background: #1e293b;
+    background: white;
     border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
 .subtitle {
     margin: 0;
-    color: #94a3b8;
+    color: #64748b;
     font-size: 14px;
 }
 
@@ -60,8 +60,8 @@ h1 {
 .display {
     padding: 20px;
     border-radius: 14px;
-    background: #0b1120;
-    color: white;
+    background: #f1f5f9;
+    color: #1e293b;
 }
 
 .display-line {
@@ -78,7 +78,7 @@ h1 {
 }
 
 .display-line.is-error {
-    color: #fca5a5;
+    color: #dc2626;
     font-size: 18px;
     white-space: normal;
     text-align: left;
@@ -102,9 +102,9 @@ h1 {
 
 .legacy-controls input[type="text"] {
     padding: 10px;
-    border: 1px solid #334155;
+    border: 1px solid #cbd5e1;
     border-radius: 6px;
-    background: #0b1120;
+    background: white;
     color: inherit;
     font: inherit;
     font-size: 16px;
@@ -142,7 +142,7 @@ h1 {
     justify-content: center;
     width: 44px;
     height: 40px;
-    border: 1px solid #334155;
+    border: 1px solid #cbd5e1;
     border-radius: 6px;
     font-size: 20px;
     font-weight: 700;
@@ -150,22 +150,22 @@ h1 {
 }
 
 .legacy-operators input:checked + span {
-    background: #f59e0b;
-    color: #1e293b;
-    border-color: #f59e0b;
+    background: #0ea5e9;
+    color: white;
+    border-color: #0ea5e9;
 }
 
 .result,
 .error {
     margin: 10px 0 0;
     padding-top: 10px;
-    border-top: 1px solid #334155;
+    border-top: 1px solid #e2e8f0;
     font-size: 14px;
 }
 
 .result strong {
     display: block;
-    color: white;
+    color: #1e293b;
     font-size: 36px;
     line-height: 1.2;
     font-variant-numeric: tabular-nums;
@@ -173,7 +173,7 @@ h1 {
 }
 
 .error {
-    color: #fca5a5;
+    color: #dc2626;
 }
 
 /* Keypad */
@@ -193,8 +193,8 @@ h1 {
     padding: 0;
     border: 0;
     border-radius: 14px;
-    background: #334155;
-    color: #f1f5f9;
+    background: #e2e8f0;
+    color: #1e293b;
     font: inherit;
     font-size: 24px;
     font-weight: 600;
@@ -205,7 +205,7 @@ h1 {
 }
 
 .key:hover {
-    background: #475569;
+    background: #cbd5e1;
 }
 
 .key:active {
@@ -213,7 +213,7 @@ h1 {
 }
 
 .key:focus-visible {
-    outline: 2px solid #38bdf8;
+    outline: 2px solid #0ea5e9;
     outline-offset: 2px;
 }
 
@@ -222,31 +222,32 @@ h1 {
 }
 
 .key-function {
-    background: #293548;
-    color: #94a3b8;
+    background: #f1f5f9;
+    color: #64748b;
     font-size: 20px;
 }
 
 .key-function:hover {
-    background: #334155;
+    background: #e2e8f0;
 }
 
 .key-operator {
-    background: #3f4f68;
+    background: #dbeafe;
+    color: #1e40af;
     font-size: 28px;
 }
 
 .key-operator:hover {
-    background: #52667f;
+    background: #bfdbfe;
 }
 
 .key-operator.is-pending {
-    background: #f59e0b;
-    color: #1e293b;
+    background: #0ea5e9;
+    color: white;
 }
 
 .key-operator.is-pending:hover {
-    background: #fbbf24;
+    background: #0284c7;
 }
 
 .calculate-button {
