@@ -124,7 +124,8 @@ def test_calculate_endpoint_applies_operator(client, op, expected):
     response = client.post("/calculate", data={"a": "6", "op": op, "b": "2"})
 
     assert response.status_code == 200
-    assert b"Result: <strong>" + expected + b"</strong>" in response.data
+    expected_result = b'<span class="visually-hidden">Result: </span><strong>' + expected + b"</strong>"
+    assert expected_result in response.data
 
 
 def test_calculate_keeps_selected_operator(client):

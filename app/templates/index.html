@@ -43,7 +43,7 @@
 
                 <div class="display-output" aria-live="polite">
                     {% if result is defined %}
-                        <p class="result">Result: <strong>{{ result }}</strong></p>
+                        <p class="result"><span class="visually-hidden">Result: </span><strong>{{ result }}</strong></p>
                     {% endif %}
 
                     {% if error %}
