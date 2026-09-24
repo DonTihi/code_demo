@@ -4,11 +4,70 @@
     box-sizing: border-box;
 }
 
+/* Light theme (default) */
 :root {
+    --bg-primary: #f5f7fb;
+    --bg-secondary: white;
+    --bg-tertiary: #f1f5f9;
+    --bg-key: #e2e8f0;
+    --bg-key-hover: #cbd5e1;
+    --bg-key-function: #f1f5f9;
+    --bg-key-function-hover: #e2e8f0;
+    --bg-key-operator: #dbeafe;
+    --bg-key-operator-hover: #bfdbfe;
+    --bg-key-operator-pending: #0ea5e9;
+    --bg-key-operator-pending-hover: #0284c7;
+
+    --text-primary: #222;
+    --text-secondary: #1e293b;
+    --text-tertiary: #64748b;
+    --text-key: #1e293b;
+    --text-key-function: #64748b;
+    --text-key-operator: #1e40af;
+    --text-key-operator-pending: white;
+    --text-error: #dc2626;
+
+    --border-color: #cbd5e1;
+    --border-subtle: #e2e8f0;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --shadow-dark: rgba(0, 0, 0, 0.08);
+    --focus-color: #0ea5e9;
+
     font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
     line-height: 1.5;
-    color: #222;
-    background: #f5f7fb;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+    --bg-primary: #0b1120;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #0b1120;
+    --bg-key: #334155;
+    --bg-key-hover: #475569;
+    --bg-key-function: #293548;
+    --bg-key-function-hover: #334155;
+    --bg-key-operator: #3f4f68;
+    --bg-key-operator-hover: #52667f;
+    --bg-key-operator-pending: #f59e0b;
+    --bg-key-operator-pending-hover: #fbbf24;
+
+    --text-primary: #e2e8f0;
+    --text-secondary: #f1f5f9;
+    --text-tertiary: #94a3b8;
+    --text-key: #f1f5f9;
+    --text-key-function: #94a3b8;
+    --text-key-operator: #f1f5f9;
+    --text-key-operator-pending: #1e293b;
+    --text-error: #fca5a5;
+
+    --border-color: #334155;
+    --border-subtle: #1e293b;
+    --shadow-color: rgba(0, 0, 0, 0.45);
+    --shadow-dark: rgba(0, 0, 0, 0.45);
+    --focus-color: #38bdf8;
 }
 
 body {
@@ -18,21 +77,21 @@ body {
 h1 {
     margin: 0 0 4px;
     font-size: 24px;
-    color: #1e293b;
+    color: var(--text-secondary);
 }
 
 .container {
     max-width: 400px;
     margin: 64px auto;
     padding: 28px;
-    background: white;
+    background: var(--bg-secondary);
     border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 30px var(--shadow-dark);
 }
 
 .subtitle {
     margin: 0;
-    color: #64748b;
+    color: var(--text-tertiary);
     font-size: 14px;
 }
 
@@ -48,6 +107,38 @@ h1 {
     border: 0;
 }
 
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--bg-key);
+    color: var(--text-key);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.15s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-key-hover);
+}
+
+.theme-toggle:active {
+    transform: scale(0.9);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 2px;
+}
+
 .calculator {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -60,8 +151,8 @@ h1 {
 .display {
     padding: 20px;
     border-radius: 14px;
-    background: #f1f5f9;
-    color: #1e293b;
+    background: var(--bg-tertiary);
+    color: var(--text-key);
 }
 
 .display-line {
@@ -78,7 +169,7 @@ h1 {
 }
 
 .display-line.is-error {
-    color: #dc2626;
+    color: var(--text-error);
     font-size: 18px;
     white-space: normal;
     text-align: left;
@@ -102,10 +193,10 @@ h1 {
 
 .legacy-controls input[type="text"] {
     padding: 10px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
-    background: white;
-    color: inherit;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
     font: inherit;
     font-size: 16px;
 }
@@ -142,30 +233,31 @@ h1 {
     justify-content: center;
     width: 44px;
     height: 40px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
+    color: var(--text-key);
 }
 
 .legacy-operators input:checked + span {
-    background: #0ea5e9;
+    background: var(--focus-color);
     color: white;
-    border-color: #0ea5e9;
+    border-color: var(--focus-color);
 }
 
 .result,
 .error {
     margin: 10px 0 0;
     padding-top: 10px;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--border-subtle);
     font-size: 14px;
 }
 
 .result strong {
     display: block;
-    color: #1e293b;
+    color: var(--text-secondary);
     font-size: 36px;
     line-height: 1.2;
     font-variant-numeric: tabular-nums;
@@ -173,7 +265,7 @@ h1 {
 }
 
 .error {
-    color: #dc2626;
+    color: var(--text-error);
 }
 
 /* Keypad */
@@ -193,8 +285,8 @@ h1 {
     padding: 0;
     border: 0;
     border-radius: 14px;
-    background: #e2e8f0;
-    color: #1e293b;
+    background: var(--bg-key);
+    color: var(--text-key);
     font: inherit;
     font-size: 24px;
     font-weight: 600;
@@ -205,7 +297,7 @@ h1 {
 }
 
 .key:hover {
-    background: #cbd5e1;
+    background: var(--bg-key-hover);
 }
 
 .key:active {
@@ -213,7 +305,7 @@ h1 {
 }
 
 .key:focus-visible {
-    outline: 2px solid #0ea5e9;
+    outline: 2px solid var(--focus-color);
     outline-offset: 2px;
 }
 
@@ -222,32 +314,32 @@ h1 {
 }
 
 .key-function {
-    background: #f1f5f9;
-    color: #64748b;
+    background: var(--bg-key-function);
+    color: var(--text-key-function);
     font-size: 20px;
 }
 
 .key-function:hover {
-    background: #e2e8f0;
+    background: var(--bg-key-function-hover);
 }
 
 .key-operator {
-    background: #dbeafe;
-    color: #1e40af;
+    background: var(--bg-key-operator);
+    color: var(--text-key-operator);
     font-size: 28px;
 }
 
 .key-operator:hover {
-    background: #bfdbfe;
+    background: var(--bg-key-operator-hover);
 }
 
 .key-operator.is-pending {
-    background: #0ea5e9;
-    color: white;
+    background: var(--bg-key-operator-pending);
+    color: var(--text-key-operator-pending);
 }
 
 .key-operator.is-pending:hover {
-    background: #0284c7;
+    background: var(--bg-key-operator-pending-hover);
 }
 
 .calculate-button {
@@ -268,5 +360,13 @@ h1 {
 
     .key {
         height: 56px;
+    }
+
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
     }
 }

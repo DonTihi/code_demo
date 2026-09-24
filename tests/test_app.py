@@ -83,6 +83,24 @@ def test_home_page_loads_keypad_script(client):
     assert b"function applyKey" in script.data
 
 
+def test_home_page_has_theme_toggle_button(client):
+    response = client.get("/")
+
+    assert b'<button class="theme-toggle" id="theme-toggle"' in response.data
+    assert b'aria-label="Toggle dark/light theme"' in response.data
+    assert b'class="theme-icon" aria-hidden="true"' in response.data
+
+
+def test_home_page_loads_theme_script(client):
+    page = client.get("/")
+    script = client.get("/static/theme.js")
+
+    assert b'src="/static/theme.js" defer' in page.data
+    assert script.status_code == 200
+    assert b"localStorage" in script.data
+    assert b"data-theme" in script.data
+
+
 def test_home_page_has_no_result_yet(client):
     response = client.get("/")
 
