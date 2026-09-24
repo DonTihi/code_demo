@@ -1,3 +1,13 @@
+{% macro operator_key(symbol, labels, selected_op) -%}
+    {%- set text, name = labels -%}
+    <label class="key key-operator">
+        <input type="radio" name="op" value="{{ symbol }}" aria-label="{{ name }}"{% if symbol == selected_op %} checked{% endif %}>
+        <span aria-hidden="true">{{ text }}</span>
+    </label>
+{%- endmacro %}
+{% macro digit_key(digit) -%}
+    <button type="button" class="key" data-key="{{ digit }}">{{ digit }}</button>
+{%- endmacro %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,50 +15,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Claude Code Agent Demo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='calculator.js') }}" defer></script>
 </head>
 <body>
+    {% set selected_op = request.form.get('op', '+') %}
     <main class="container">
         <h1>Claude Code Agent Demo</h1>
         <p class="subtitle">Small Flask application for demonstrating agentic software development.</p>
 
-        <form method="post" action="{{ url_for('main.calculate') }}" class="calculator-form">
-            <label>
-                First number
-                <input type="number" name="a" step="any" inputmode="decimal" required autofocus
-                       value="{{ request.form.get('a', '') }}">
-            </label>
+        <form method="post" action="{{ url_for('main.calculate') }}" class="calculator"
+              data-calculator data-result="{{ result if result is defined else '' }}">
+            <div class="display">
+                <label class="display-row">
+                    <span class="visually-hidden">First number</span>
+                    <input type="text" name="a" inputmode="decimal" autocomplete="off" placeholder="0" required
+                           value="{{ request.form.get('a', '') }}">
+                </label>
 
-            <fieldset class="operator-group">
-                <legend>Operator</legend>
-                {% set selected_op = request.form.get('op', '+') %}
-                <div class="operator-buttons">
-                    {% for symbol, (text, name) in operators.items() %}
-                        <label class="operator-button">
-                            <input type="radio" name="op" value="{{ symbol }}" aria-label="{{ name }}"{% if symbol == selected_op %} checked{% endif %}>
-                            <span aria-hidden="true">{{ text }}</span>
-                        </label>
-                    {% endfor %}
+                <label class="display-row">
+                    <span class="display-operator" aria-hidden="true" data-operator-display>
+                        {{- operators[selected_op][0] if selected_op in operators -}}
+                    </span>
+                    <span class="visually-hidden">Second number</span>
+                    <input type="text" name="b" inputmode="decimal" autocomplete="off" placeholder="0" required
+                           value="{{ request.form.get('b', '') }}">
+                </label>
+
+                <div class="display-output" aria-live="polite">
+                    {% if result is defined %}
+                        <p class="result">Result: <strong>{{ result }}</strong></p>
+                    {% endif %}
+
+                    {% if error %}
+                        <p class="error" role="alert">{{ error }}</p>
+                    {% endif %}
                 </div>
-            </fieldset>
+            </div>
 
-            <label>
-                Second number
-                <input type="number" name="b" step="any" inputmode="decimal" required
-                       value="{{ request.form.get('b', '') }}">
-            </label>
+            <div class="keypad">
+                <button type="button" class="key key-function" data-key="clear" aria-label="Clear">C</button>
+                <button type="button" class="key key-function" data-key="backspace" aria-label="Delete last digit">⌫</button>
+                <button type="button" class="key key-function" data-key="sign" aria-label="Toggle sign">±</button>
+                {{ operator_key("/", operators["/"], selected_op) }}
 
-            <button type="submit" class="calculate-button">Calculate</button>
+                {{ digit_key(7) }}
+                {{ digit_key(8) }}
+                {{ digit_key(9) }}
+                {{ operator_key("*", operators["*"], selected_op) }}
+
+                {{ digit_key(4) }}
+                {{ digit_key(5) }}
+                {{ digit_key(6) }}
+                {{ operator_key("-", operators["-"], selected_op) }}
+
+                {{ digit_key(1) }}
+                {{ digit_key(2) }}
+                {{ digit_key(3) }}
+                {{ operator_key("+", operators["+"], selected_op) }}
+
+                <button type="button" class="key key-wide" data-key="0">0</button>
+                <button type="button" class="key" data-key="." aria-label="Decimal point">.</button>
+                <button type="submit" class="key calculate-button" aria-label="Calculate">=</button>
+            </div>
         </form>
-
-        <div aria-live="polite">
-            {% if result is defined %}
-                <p class="result">Result: <strong>{{ result }}</strong></p>
-            {% endif %}
-
-            {% if error %}
-                <p class="error" role="alert">{{ error }}</p>
-            {% endif %}
-        </div>
     </main>
 </body>
 </html>

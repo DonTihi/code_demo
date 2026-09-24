@@ -11,7 +11,9 @@ This is a deliberately small Flask application used to demonstrate agentic softw
 - `app/routes.py` contains the Flask routes.
 - `app/templates/index.html` contains the page markup.
 - `app/static/style.css` contains the UI styling.
+- `app/static/calculator.js` drives the on-screen keypad. It only fills in the form; the server does the arithmetic.
 - `tests/` contains pytest tests; shared fixtures live in `tests/conftest.py`.
+- `tests/js/` contains Node.js unit tests for the keypad logic; `pytest` runs them when Node.js is installed.
 - `pyproject.toml` contains the pytest configuration.
 - `mcp_server/server.py` exposes project context through MCP.
 

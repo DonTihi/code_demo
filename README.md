@@ -4,6 +4,8 @@ A tiny Flask application designed for a live demonstration of agentic software d
 
 The calculator supports addition, subtraction, multiplication and division (`+`, `-`, `*`, `/`). It rejects invalid numbers and division by zero with a clear error message.
 
+It looks and works like a pocket calculator: a display, a 0–9 keypad, operator keys, `C`, `⌫`, `±` and a red `=` key. The physical keyboard works too (digits, `+ - * /`, `Enter`, `Backspace`, `Esc`).
+
 ## What the demo shows
 
 1. Claude Code receives a normal development request.
@@ -49,8 +51,9 @@ app/
   calculator.py      input parsing and the + - * / operations
   routes.py          Flask routes
   templates/         HTML templates
-  static/            CSS
+  static/            CSS and the keypad script (calculator.js)
 tests/               pytest tests (fixtures in conftest.py)
+  js/                Node.js tests for the keypad logic
 mcp_server/          local MCP server for project context
 ```
 
@@ -58,6 +61,12 @@ mcp_server/          local MCP server for project context
 
 ```powershell
 pytest
+```
+
+`pytest` also runs the keypad JavaScript tests when Node.js is installed (otherwise that test is skipped). To run them directly:
+
+```powershell
+node --test tests/js/calculator.test.js
 ```
 
 ## MCP
