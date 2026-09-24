@@ -91,11 +91,13 @@ def test_home_page_has_theme_toggle_button(client):
     assert b'class="theme-icon" aria-hidden="true"' in response.data
 
 
-def test_home_page_loads_theme_script(client):
+def test_home_page_loads_theme_script_before_first_paint(client):
     page = client.get("/")
     script = client.get("/static/theme.js")
 
-    assert b'src="/static/theme.js" defer' in page.data
+    # Deferring it would paint the light theme first and flash in dark mode.
+    head = page.data.split(b"</head>")[0]
+    assert b'<script src="/static/theme.js"></script>' in head
     assert script.status_code == 200
     assert b"localStorage" in script.data
     assert b"data-theme" in script.data

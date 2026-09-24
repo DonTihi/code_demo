@@ -12,7 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Claude Code Agent Demo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='theme.js') }}" defer></script>
+    <!-- Not deferred: it must set the theme before the first paint. -->
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
     <script src="{{ url_for('static', filename='calculator.js') }}" defer></script>
 </head>
 <body>

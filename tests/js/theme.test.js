@@ -1,7 +1,7 @@
 const assert = require("node:assert/strict");
 const { test } = require("node:test");
 
-const { getTheme, DARK, LIGHT } = require("../app/static/theme.js");
+const { getTheme, DARK, LIGHT } = require("../../app/static/theme.js");
 
 // Mock localStorage
 let storage = {};

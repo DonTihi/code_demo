@@ -59,10 +59,10 @@
     if (typeof module !== "undefined" && module.exports) {
         module.exports = { getTheme, applyTheme, toggleTheme, DARK, LIGHT };
     } else {
+        // This script is loaded without "defer" in <head>, so it runs before
+        // the page is painted. Setting the theme now stops a saved dark theme
+        // from flashing light on every page load (e.g. after pressing "=").
+        document.documentElement.setAttribute("data-theme", getTheme());
         document.addEventListener("DOMContentLoaded", init);
-        // Also init if DOM is already loaded
-        if (document.readyState !== "loading") {
-            init();
-        }
     }
 })();
