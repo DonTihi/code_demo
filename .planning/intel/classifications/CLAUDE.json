@@ -1,0 +1,30 @@
+{
+  "filename": "CLAUDE.md",
+  "classification": "DOC",
+  "title": "Claude Code Agent Demo",
+  "scope_summary": "Project documentation for a deliberately small Flask calculator application used to demonstrate agentic software development. Defines project architecture, codebase structure, engineering rules, verification procedures, and a standard demo task.",
+  "key_sections": [
+    "Project",
+    "Architecture",
+    "Engineering rules",
+    "Standard verification",
+    "Demo task"
+  ],
+  "cross_references": {
+    "files": [
+      "app/__init__.py",
+      "app/calculator.py",
+      "app/routes.py",
+      "app/templates/index.html",
+      "app/static/style.css",
+      "app/static/calculator.js",
+      "tests/conftest.py",
+      "tests/js/",
+      "pyproject.toml",
+      "mcp_server/server.py"
+    ],
+    "external_refs": []
+  },
+  "document_type": "Internal project guidelines and engineering standards",
+  "purpose": "Guide developers working on the calculator demo project with architectural overview, code organization, engineering rules, testing procedures, and example task specifications"
+}

@@ -1,0 +1,39 @@
+{
+  "filename": "README.md",
+  "type": "DOC",
+  "title": "Claude Code Agent Demo",
+  "scope_summary": "Project documentation for a tiny Flask calculator application designed to demonstrate agentic software development with Claude Code. Includes application overview, setup instructions, project structure, testing procedures, MCP integration, and Git workflow expectations.",
+  "cross_references": {
+    "internal_files": [
+      "CLAUDE.md",
+      "app/__init__.py",
+      "app/__main__.py",
+      "app/calculator.py",
+      "app/routes.py",
+      "app/templates/index.html",
+      "app/static/style.css",
+      "app/static/calculator.js",
+      "tests/conftest.py",
+      "tests/js/calculator.test.js",
+      "mcp_server/server.py",
+      "requirements.txt",
+      ".mcp.json"
+    ],
+    "frameworks_and_tools": [
+      "Flask",
+      "pytest",
+      "Node.js",
+      "MCP (Model Context Protocol)",
+      "Git"
+    ],
+    "sections": [
+      "What the demo shows",
+      "Demo request: Change the Calculate button from blue to red",
+      "Run the application",
+      "Project layout",
+      "Run tests",
+      "MCP",
+      "Git"
+    ]
+  }
+}
