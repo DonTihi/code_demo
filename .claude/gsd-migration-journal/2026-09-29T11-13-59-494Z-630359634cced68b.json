@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "appliedAt": "2026-09-29T11:13:59.494Z",
+  "appliedMigrationIds": [
+    "2026-05-11-first-time-baseline-scan"
+  ],
+  "actions": [
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "settings.json",
+      "reason": "unknown install-surface file preserved by first-time migration baseline",
+      "classification": "unknown",
+      "originalHash": null,
+      "currentHash": "7abe1b4a3ee6bf4164b4c2435672889e26bebc39d104e9ac1e9e5cc925e01bf1",
+      "status": "preserved"
+    }
+  ]
+}

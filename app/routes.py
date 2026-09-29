@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request
+import time
+from flask import Blueprint, current_app, jsonify, render_template, request
 
 from . import calculator
 
@@ -57,3 +58,9 @@ def calculate():
         return _render(400, error=OVERFLOW_MESSAGE)
 
     return _render(result=result)
+
+
+@bp.get("/health")
+def health():
+    uptime = time.time() - current_app.start_time
+    return jsonify({"status": "ok", "uptime": uptime})

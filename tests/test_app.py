@@ -206,3 +206,13 @@ def test_calculate_rejects_invalid_input(client, data):
 
     assert response.status_code == 400
     assert b"Please enter two valid numbers." in response.data
+
+
+def test_health_endpoint_returns_ok_status(client):
+    response = client.get("/health")
+
+    assert response.status_code == 200
+    data = response.get_json()
+    assert data["status"] == "ok"
+    assert isinstance(data["uptime"], float)
+    assert data["uptime"] >= 0

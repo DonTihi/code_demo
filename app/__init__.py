@@ -1,3 +1,4 @@
+import time
 from flask import Flask
 
 from .routes import bp
@@ -9,6 +10,7 @@ def create_app(config: dict | None = None) -> Flask:
     if config:
         app.config.update(config)
 
+    app.start_time = time.time()
     app.register_blueprint(bp)
 
     return app
